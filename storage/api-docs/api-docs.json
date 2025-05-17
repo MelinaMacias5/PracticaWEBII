@@ -1,0 +1,328 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Mi Aplicacion",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/estudiantes": {
+            "get": {
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Listar todos los estudiantes",
+                "operationId": "209e318b7ac388b93bccf7af4162e33b",
+                "responses": {
+                    "200": {
+                        "description": "Listado exitoso"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Crear un nuevo estudiante",
+                "operationId": "bf7df90391b947c8dc2f77570e61358a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "cedula",
+                                    "correo",
+                                    "paralelo_id"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string"
+                                    },
+                                    "cedula": {
+                                        "type": "string"
+                                    },
+                                    "correo": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "paralelo_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Estudiante creado"
+                    }
+                }
+            }
+        },
+        "/api/estudiantes/{id}": {
+            "get": {
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Mostrar un estudiante específico",
+                "operationId": "fcd2a65dde4ddb1efd0765a95b43b9fb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del estudiante",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Estudiante encontrado"
+                    },
+                    "404": {
+                        "description": "Estudiante no encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Actualizar un estudiante",
+                "operationId": "a0d23067013987f1a070c064758e522b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del estudiante",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string"
+                                    },
+                                    "cedula": {
+                                        "type": "string"
+                                    },
+                                    "correo": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "paralelo_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Estudiante actualizado correctamente"
+                    },
+                    "404": {
+                        "description": "Estudiante no encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Eliminar un estudiante",
+                "operationId": "caeee49dd1fc2f0619a1069d2e414f0b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del estudiante",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Estudiante eliminado correctamente"
+                    },
+                    "404": {
+                        "description": "Estudiante no encontrado"
+                    }
+                }
+            }
+        },
+        "/api/paralelos": {
+            "get": {
+                "tags": [
+                    "Paralelos"
+                ],
+                "summary": "Listar todos los paralelos",
+                "operationId": "30409aa4e072067e1395716421b89f6c",
+                "responses": {
+                    "200": {
+                        "description": "Lista de paralelos obtenida correctamente"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Paralelos"
+                ],
+                "summary": "Crear un nuevo paralelo",
+                "operationId": "63f2e6de83fe35723b5077a59ec0f619",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "maxLength": 100
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Paralelo creado exitosamente"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            }
+        },
+        "/api/paralelos/{id}": {
+            "get": {
+                "tags": [
+                    "Paralelos"
+                ],
+                "summary": "Mostrar un paralelo específico",
+                "operationId": "4d4a75bdf60cae9e6845622d9d5089d2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del paralelo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Paralelo encontrado"
+                    },
+                    "404": {
+                        "description": "Paralelo no encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Paralelos"
+                ],
+                "summary": "Actualizar un paralelo",
+                "operationId": "09c0363579e6f12d0cf5d6a8934f4fad",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del paralelo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "maxLength": 100
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Paralelo actualizado correctamente"
+                    },
+                    "404": {
+                        "description": "Paralelo no encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Paralelos"
+                ],
+                "summary": "Eliminar un paralelo",
+                "operationId": "e1db2fb826fbe8f0eb7a8c73c9222f49",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del paralelo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Paralelo eliminado correctamente"
+                    },
+                    "404": {
+                        "description": "Paralelo no encontrado"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Estudiantes",
+            "description": "Estudiantes"
+        },
+        {
+            "name": "Paralelos",
+            "description": "Paralelos"
+        }
+    ]
+}
